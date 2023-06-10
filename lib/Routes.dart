@@ -1,4 +1,4 @@
-import 'dart:js';
+// import 'dart:js';
 
 import 'package:flutter/material.dart';
 
@@ -15,12 +15,16 @@ class Routes {
         }
       default:
         {
-          return MaterialPageRoute(builder: (context) {
-            return Scaffold(
-              body: Text("No routes found"),
-            );
-          });
+          return _errorRoute();
         }
     }
+  }
+
+  static Route<dynamic> _errorRoute() {
+    return MaterialPageRoute(builder: (context) {
+      return Scaffold(
+        body: Text("No routes found"),
+      );
+    });
   }
 }

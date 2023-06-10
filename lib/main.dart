@@ -11,9 +11,9 @@ void main() {
 class BottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       initialRoute: Routes_name.home_route,
-      onGenerateInitialRoutes: Routes.generateRoute,
+      onGenerateRoute: Routes.generateRoute,
     );
   }
 }
