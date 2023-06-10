@@ -6,9 +6,25 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-// Static const List<Widget>
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
+  static const List<Widget> _pages = <Widget>[
+    Icon(
+      Icons.call,
+      size: 200,
+      color: Colors.green,
+    ),
+    Icon(
+      Icons.camera,
+      size: 200,
+      color: Colors.teal,
+    ),
+    Icon(
+      Icons.chat,
+      size: 200,
+      color: Colors.amber,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +34,8 @@ class _HomeState extends State<Home> {
         appBar: AppBar(
           title: Text("Bottom Nav Demo"),
         ),
-        body: const Center(
-          child: Text("HOME"),
+        body: Center(
+          child: _pages.elementAt(_selectedIndex),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
