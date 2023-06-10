@@ -8,6 +8,25 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
+  // static const List _text = [
+  //   Image(
+  //     image: NetworkImage(
+  //         "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg"),
+  //   ),
+  //   Image(
+  //     image: NetworkImage(
+  //         "https://i.pinimg.com/474x/69/44/39/694439b3031503a7564eda9e24f673eb.jpg"),
+  //   ),
+  //   Image(
+  //     image: NetworkImage(
+  //         "https://t3.ftcdn.net/jpg/03/02/31/66/360_F_302316661_mwwHgrXkBWAg0JSKGIowZzvGSxmUR554.jpg"),
+  //   ),
+  // ];
+  static const List<Widget> _text = <Widget>[
+    TextField(),
+    Text("camera"),
+    Text("message"),
+  ];
   static const List<Widget> _pages = <Widget>[
     Icon(
       Icons.call,
@@ -35,7 +54,15 @@ class _HomeState extends State<Home> {
           title: Text("Bottom Nav Demo"),
         ),
         body: Center(
-          child: _pages.elementAt(_selectedIndex),
+          child: Column(
+            children: [
+              _pages.elementAt(_selectedIndex),
+              IndexedStack(
+                index: _selectedIndex,
+                children: _text,
+              ),
+            ],
+          ),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
