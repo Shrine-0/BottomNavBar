@@ -49,38 +49,66 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Bottom Nav Demo"),
-        ),
-        body: Center(
-          child: Column(
+      home: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("Bottom Nav Demo"),
+            bottom: TabBar(
+              tabs: [
+                Tab(icon: Icon(Icons.flight)),
+                Tab(icon: Icon(Icons.directions_transit)),
+                Tab(icon: Icon(Icons.directions_car)),
+              ],
+            ),
+          ),
+          body:
+              //   child: Column(
+              //     children: [
+              // _pages.elementAt(_selectedIndex),
+              // IndexedStack(
+              //   index: _selectedIndex,
+              //   children: _text,
+              // ),
+              const TabBarView(
             children: [
-              _pages.elementAt(_selectedIndex),
-              IndexedStack(
-                index: _selectedIndex,
-                children: _text,
+              Icon(
+                Icons.flight,
+                size: 350,
+                color: Colors.amber,
+              ),
+              Icon(
+                Icons.directions_transit,
+                size: 350,
+                color: Colors.amber,
+              ),
+              Icon(
+                Icons.directions_car,
+                size: 350,
+                color: Colors.amber,
               ),
             ],
           ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.call),
-              label: "call",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.camera),
-              label: "camera",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.chat),
-              label: "chat",
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
+          bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: Colors.black38,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.call),
+                label: "call",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.camera),
+                label: "camera",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.chat),
+                label: "chat",
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            onTap: _onItemTapped,
+          ),
+          // ],
         ),
       ),
     );
