@@ -1,13 +1,33 @@
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
-  Home({super.key});
+  const Home({super.key});
   @override
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with TickerProviderStateMixin {
+  late final TabController _controller;
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TabController(length: 3, vsync: this);
+    _controller.addListener(() {
+      setState(() {
+        _selectedIndex = _controller.index;
+      });
+      print("Selected Index" + _controller.index.toString());
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   // static const List _text = [
   //   Image(
   //     image: NetworkImage(
@@ -53,9 +73,15 @@ class _HomeState extends State<Home> {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            title: Text("Bottom Nav Demo"),
+            title: const Text(
+              "Nav Demo",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             bottom: TabBar(
-              tabs: [
+              controller: _controller,
+              tabs: const <Widget>[
                 Tab(icon: Icon(Icons.flight)),
                 Tab(icon: Icon(Icons.directions_transit)),
                 Tab(icon: Icon(Icons.directions_car)),
@@ -70,21 +96,22 @@ class _HomeState extends State<Home> {
               //   index: _selectedIndex,
               //   children: _text,
               // ),
-              const TabBarView(
-            children: [
+              TabBarView(
+            controller: _controller,
+            children: const <Widget>[
               Icon(
                 Icons.flight,
-                size: 350,
+                size: 250,
                 color: Colors.amber,
               ),
               Icon(
                 Icons.directions_transit,
-                size: 350,
+                size: 250,
                 color: Colors.amber,
               ),
               Icon(
                 Icons.directions_car,
-                size: 350,
+                size: 250,
                 color: Colors.amber,
               ),
             ],
